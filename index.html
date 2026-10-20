@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guide de dépannage ordinateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F9; --surface:#FFFFFF; --ink:#14283D; --muted:#51647A; --line:#D5DEE8;
+  --blue:#1F4E79; --blue-ink:#FFFFFF; --accent:#E67E22; --accent-ink:#1B1204; --bar:#1F4E79;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A27; --surface:#162536; --ink:#EAF1F8; --muted:#9DB1C6; --line:#27394D;
+    --blue:#6AA7DB; --blue-ink:#0E1A27; --accent:#F0902D; --accent-ink:#1B1204; --bar:#2C4C6C; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A27; --surface:#162536; --ink:#EAF1F8; --muted:#9DB1C6; --line:#27394D;
+  --blue:#6AA7DB; --blue-ink:#0E1A27; --accent:#F0902D; --accent-ink:#1B1204; --bar:#2C4C6C; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+header{padding:18px 0 6px;font-weight:600;color:var(--muted);font-size:15px}
+a{color:inherit}
+h1,h2{line-height:1.15;margin:0}
+h2{font-size:26px;margin-bottom:14px}
+section{padding:34px 0}
+.btn{display:inline-block;text-decoration:none;font:600 17px/1 "Instrument Sans",system-ui,sans-serif;padding:16px 22px;border-radius:10px;border:2px solid transparent;cursor:pointer}
+.btn:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.btn-main{background:var(--accent);color:var(--accent-ink)}
+.btn-alt{background:transparent;color:var(--ink);border-color:var(--line)}
+/* fenêtre d'alerte */
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 18px 40px -18px rgba(20,40,61,.45)}
+.bar{background:var(--bar);color:#fff;font-size:14px;font-weight:600;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.bar i{display:flex;gap:6px}.bar i b{width:10px;height:10px;border:1.5px solid #fff;display:block}
+.dlg-body{padding:26px 22px 24px;display:flex;gap:18px;align-items:flex-start}
+.bang{flex:none;width:54px;height:54px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:700 34px/54px "Instrument Sans",sans-serif;text-align:center}
+.dlg h1{font-size:clamp(30px,8vw,44px);letter-spacing:-.02em;margin-bottom:10px}
+.dlg p{margin:0 0 20px;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+ul.ch{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+ul.ch li{padding:13px 0;border-bottom:1px solid var(--line)}
+ul.ch b{display:block}
+ul.ch span{color:var(--muted);font-size:15px}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px 22px;text-align:center}
+.price .n{font-size:64px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.price .n small{font-size:24px;color:var(--accent);margin-left:6px}
+.price p{margin:8px 0 20px;color:var(--muted)}
+ol{margin:0;padding:0;list-style:none;counter-reset:s}
+ol li{counter-increment:s;display:flex;gap:14px;padding:12px 0}
+ol li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;background:var(--blue);color:var(--blue-ink);font-weight:700;display:grid;place-items:center}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--muted)}
+footer{padding:30px 0 40px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+footer strong{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>AGBA GNANDI Kondi, dépannage informatique</header>
+
+  <section style="padding-top:14px">
+    <div class="dlg" role="group" aria-label="Alerte">
+      <div class="bar"><span>Alerte système</span><i aria-hidden="true"><b></b><b></b></i></div>
+      <div class="dlg-body">
+        <div class="bang" aria-hidden="true">!</div>
+        <div>
+          <h1>Ton ordinateur a un problème&nbsp;?</h1>
+          <p>Un guide PDF de 13 pages pour le réparer toi-même, étape par étape, sans payer de technicien.</p>
+          <div class="row">
+            <a class="btn btn-main" href="https://wa.me/22891688674?text=Bonjour%2C%20je%20veux%20commander%20le%20Guide%20de%20d%C3%A9pannage%20ordinateur%20(2%20000%20FCFA)." target="_blank" rel="noopener">Commander le guide</a>
+            <a class="btn btn-alt" href="#contenu">Voir le contenu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contenu">
+    <h2>Dans le guide</h2>
+    <ul class="ch">
+      <li><b>L’ordinateur ne s’allume pas</b><span>Chargeur, prise, écran noir.</span></li>
+      <li><b>L’ordinateur est lent</b><span>Démarrage, disque plein, programmes inutiles.</span></li>
+      <li><b>Écran bleu et plantages</b><span>Que faire avec le code d’erreur.</span></li>
+      <li><b>Internet et Wi‑Fi</b><span>Connecté sans accès, réseau qui disparaît.</span></li>
+      <li><b>Chauffe et ventilateur bruyant</b><span>Nettoyage et bons réflexes.</span></li>
+      <li><b>Virus et publicités intempestives</b><span>Nettoyer et éviter les arnaques.</span></li>
+      <li><b>Son, USB, imprimante, clavier</b><span>Les petites pannes du quotidien.</span></li>
+      <li><b>Batterie et chargeur</b><span>Autonomie courte, charge impossible.</span></li>
+      <li><b>Windows ne démarre plus</b><span>Réparation, restauration, mode sans échec.</span></li>
+      <li><b>Prévention et checklist</b><span>Les habitudes qui évitent les pannes.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="price">
+      <div class="n">2&nbsp;000<small>FCFA</small></div>
+      <p>Prix de lancement. Paiement par TMoney.</p>
+      <a class="btn btn-main" href="https://wa.me/22891688674?text=Bonjour%2C%20je%20veux%20commander%20le%20Guide%20de%20d%C3%A9pannage%20ordinateur%20(2%20000%20FCFA)." target="_blank" rel="noopener">Commander sur WhatsApp</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment commander</h2>
+    <ol>
+      <li>Appuie sur « Commander ». WhatsApp s’ouvre avec le message déjà écrit.</li>
+      <li>Je t’envoie les détails du paiement TMoney.</li>
+      <li>Dès que je confirme ton paiement, tu reçois le PDF sur WhatsApp.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Questions fréquentes</h2>
+    <details><summary>Je peux le lire sur mon téléphone&nbsp;?</summary><p>Oui. Le PDF se lit sur téléphone, tablette ou ordinateur.</p></details>
+    <details><summary>Quand je reçois le guide&nbsp;?</summary><p>Juste après la confirmation de ton paiement TMoney, directement sur WhatsApp.</p></details>
+    <details><summary>Le guide marche pour quel système&nbsp;?</summary><p>Il est écrit pour les ordinateurs sous Windows.</p></details>
+    <details><summary>Ma panne n’est pas dans le guide</summary><p>Écris-moi sur WhatsApp. Je fais aussi du dépannage réseau et bureautique.</p></details>
+  </section>
+
+  <footer>
+    <strong>AGBA GNANDI Kondi</strong><br>
+    WhatsApp : <a href="https://wa.me/22891688674" target="_blank" rel="noopener">+228 91 68 86 74</a><br>
+    Usage personnel uniquement. Revente et partage du guide interdits.
+  </footer>
+</div>
+</body>
+</html>
